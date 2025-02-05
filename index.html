@@ -1,152 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeReveal Pro | Your Product Name</title>
-    <!-- Prism.js for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --transition-speed: 0.3s;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeReveal Pro | Your Product Name</title>
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --accent-color: #3498db;
+      --transition-speed: 0.3s;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            font-family: 'Segoe UI', system-ui;
-            line-height: 1.6;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #f8f9fa;
-        }
+    body {
+      font-family: 'Segoe UI', system-ui;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f8f9fa;
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
 
-        .card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform var(--transition-speed) ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            cursor: pointer;
-            position: relative;
-        }
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform var(--transition-speed) ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      position: relative;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--accent-color);
-        }
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--accent-color);
+    }
 
-        .code-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height var(--transition-speed) ease-out;
-            background: #282c34;
-        }
+    .code-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-speed) ease-out;
+      background: #282c34;
+    }
 
-        .code-container.active {
-            max-height: 500px;
-        }
+    .code-container.active {
+      max-height: 500px;
+    }
 
-        pre[class*="language-"] {
-            margin: 0;
-            padding: 1.5rem !important;
-            background: none !important;
-        }
+    pre[class*="language-"] {
+      margin: 0;
+      padding: 1.5rem !important;
+      background: none !important;
+    }
 
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity var(--transition-speed) ease;
-        }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+    }
 
-        .card:hover .copy-btn {
-            opacity: 1;
-        }
+    .card:hover .copy-btn {
+      opacity: 1;
+    }
 
-        .password-gate {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+    .password-gate {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-        .password-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-    </style>
+    .password-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <!-- Password Gate -->
-    <div class="password-gate">
-        <div class="password-form">
-            <h2>Enter Access Code</h2>
-            <input type="password" id="passwordInput" placeholder="Enter your access code">
-            <button onclick="checkPassword()">Unlock Content</button>
-            <p id="errorMsg" style="color: red; margin-top: 1rem; display: none;">Invalid code</p>
-        </div>
+  <!-- Password Gate -->
+  <div class="password-gate">
+    <div class="password-form">
+      <h2>Enter Access Code</h2>
+      <input type="password" id="passwordInput" placeholder="Enter your access code">
+      <button onclick="checkPassword()">Unlock Content</button>
+      <p id="errorMsg" style="color: red; margin-top: 1rem; display: none;">Invalid code</p>
     </div>
+  </div>
 
-    <!-- Content -->
-    <div class="content" style="display: none;">
-        <header class="header">
-            <h1>✨ CodeReveal Pro</h1>
-            <p>Click any image to reveal the code</p>
-        </header>
+  <!-- Content -->
+  <div class="content" style="display: none;">
+    <header class="header">
+      <h1>✨ CodeReveal Pro</h1>
+      <p>Click any image to reveal the code</p>
+    </header>
 
-        <div class="grid">
-            <!-- Card 1 -->
-            <div class="card">
-                <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
-                <img src="photo1.jpg" alt="Feature 1" class="card-image" data-code="code1">
-                <div class="code-container" id="code1">
-                    <pre><code class="language-javascript">
-// Modern JavaScript Example
+    <div class="grid">
+      <!-- Card 1 -->
+      <div class="card">
+        <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
+        <!-- Image mise à jour pour le premier code -->
+        <img src="Capture d’écran 2025-02-03 175017.png" alt="Capture d’écran 2025-02-03 175017" class="card-image" data-code="code1">
+        <div class="code-container" id="code1">
+          <pre><code class="language-javascript">
+// Exemple en JavaScript moderne
 class Demo {
   constructor(message) {
     this.message = message;
@@ -159,80 +160,88 @@ class Demo {
 
 const instance = new Demo('Hello World!');
 instance.display();
-                    </code></pre>
-                </div>
-            </div>
+          </code></pre>
+        </div>
+      </div>
 
-            <!-- Card 2 -->
-            <div class="card">
-                <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
-                <img src="photo2.jpg" alt="Feature 2" class="card-image" data-code="code2">
-                <div class="code-container" id="code2">
-                    <pre><code class="language-python">
-# Python Example with Type Hints
+      <!-- Card 2 -->
+      <div class="card">
+        <button class="copy-btn" onclick="copyCode('code2')">Copy</button>
+        <img src="photo2.jpg" alt="Feature 2" class="card-image" data-code="code2">
+        <div class="code-container" id="code2">
+          <pre><code class="language-python">
+# Exemple en Python avec annotations de type
 from typing import List
 
 def fibonacci(n: int) -> List[int]:
-    """Generate Fibonacci sequence"""
+    """Génère la séquence de Fibonacci"""
     sequence = [0, 1]
     while len(sequence) < n:
         sequence.append(sum(sequence[-2:]))
     return sequence[:n]
 
 print(fibonacci(10))
-                    </code></pre>
-                </div>
-            </div>
+          </code></pre>
         </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
-    <script>
-        // Password Protection
-        const validPassword = "client_2023!";
-        
-        function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            const errorMsg = document.getElementById('errorMsg');
-            
-            if (input === validPassword) {
-                document.querySelector('.password-gate').style.display = 'none';
-                document.querySelector('.content').style.display = 'block';
-            } else {
-                errorMsg.style.display = 'block';
-                setTimeout(() => {
-                    errorMsg.style.display = 'none';
-                }, 2000);
-            }
-        }
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+  <script>
+    // ********************
+    // 1. Protection par mot de passe
+    // ********************
+    const validPassword = "client_2023!";
+    
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value;
+      const errorMsg = document.getElementById('errorMsg');
+      
+      if (input === validPassword) {
+        document.querySelector('.password-gate').style.display = 'none';
+        document.querySelector('.content').style.display = 'block';
+      } else {
+        errorMsg.style.display = 'block';
+        setTimeout(() => {
+          errorMsg.style.display = 'none';
+        }, 2000);
+      }
+    }
 
-        // Code Toggle
-        document.querySelectorAll('.card-image').forEach(img => {
-            img.addEventListener('click', () => {
-                const codeId = img.dataset.code;
-                const codeContainer = document.getElementById(codeId);
-                codeContainer.classList.toggle('active');
-            });
+    // ********************
+    // 2. Affichage/Masquage du code
+    // ********************
+    document.querySelectorAll('.card-image').forEach(img => {
+      img.addEventListener('click', () => {
+        const codeId = img.dataset.code;
+        const codeContainer = document.getElementById(codeId);
+        codeContainer.classList.toggle('active');
+      });
+    });
+
+    // ********************
+    // 3. Copier le code dans le presse-papiers
+    // ********************
+    function copyCode(codeId) {
+      const code = document.querySelector(`#${codeId} code`).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        alert('Code copied to clipboard!');
+      });
+    }
+
+    // ********************
+    // 4. Navigation au clavier (fermer le code avec la touche Échap)
+    // ********************
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.code-container.active').forEach(container => {
+          container.classList.remove('active');
         });
-
-        // Copy to Clipboard
-        function copyCode(codeId) {
-            const code = document.querySelector(`#${codeId} code`).innerText;
-            navigator.clipboard.writeText(code).then(() => {
-                alert('Code copied to clipboard!');
-            });
-        }
-
-        // Keyboard Navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.code-container.active').forEach(container => {
-                    container.classList.remove('active');
-                });
-            }
-        });
-    </script>
+      }
+    });
+  </script>
 </body>
 </html>
