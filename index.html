@@ -31,16 +31,41 @@
     <div class="grid">
       <!-- Card 1 -->
       <div class="card">
-        <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
-        <!-- Image mise à jour pour le premier code -->
-        <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
+    <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
+    <!-- Image mise à jour pour le premier code -->
+    <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
 
-        <div class="code-container" id="code1">
-          <pre><code class="language-html" id="code1-content">
-            <!-- The content will be loaded here by JavaScript -->
-          </code></pre>
-        </div>
-      </div>
+    <div class="code-container" id="code1">
+        <pre><code id="code-content"></code></pre>
+    </div>
+</div>
+
+<script>
+    // URL to the raw HTML file in your GitHub repository
+    const githubRawUrl = 'https://github.com/XamB2836/Codify.git/main/Codes/Coupon-Code-With-Timer.html';
+
+    // Fetch the content of the HTML file
+    fetch(githubRawUrl)
+        .then(response => response.text())
+        .then(data => {
+            // Insert the fetched content into the <code> element
+            document.getElementById('code-content').textContent = data;
+        })
+        .catch(error => {
+            console.error('Error fetching the file:', error);
+        });
+
+    function copyCode(elementId) {
+        const codeElement = document.getElementById(elementId).querySelector('code');
+        const textArea = document.createElement('textarea');
+        textArea.value = codeElement.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('Code copied to clipboard!');
+    }
+</script>
 
       <!-- Card 2 -->
       <div class="card">
