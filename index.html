@@ -7,7 +7,118 @@
   <!-- Prism.js for syntax highlighting -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
   <style>
-    /* Your existing CSS styles */
+    :root {
+      --primary-color: #2c3e50;
+      --accent-color: #3498db;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui;
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f8f9fa;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform var(--transition-speed) ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid var(--accent-color);
+    }
+
+    .code-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-speed) ease-out;
+      background: #282c34;
+    }
+
+    .code-container.active {
+      max-height: 500px;
+    }
+
+    pre[class*="language-"] {
+      margin: 0;
+      padding: 1.5rem !important;
+      background: none !important;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+    }
+
+    .card:hover .copy-btn {
+      opacity: 1;
+    }
+
+    .password-gate {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .password-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -31,41 +142,16 @@
     <div class="grid">
       <!-- Card 1 -->
       <div class="card">
-    <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
-    <!-- Image mise à jour pour le premier code -->
-    <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
+        <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
+        <!-- Image mise à jour pour le premier code -->
+       <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
 
-    <div class="code-container" id="code1">
-        <pre><code id="code-content"></code></pre>
-    </div>
-</div>
-
-<script>
-    // URL to the raw HTML file in your GitHub repository
-    const githubRawUrl = 'https://github.com/XamB2836/Codify.git/main/Codes/Coupon-Code-With-Timer.html';
-
-    // Fetch the content of the HTML file
-    fetch(githubRawUrl)
-        .then(response => response.text())
-        .then(data => {
-            // Insert the fetched content into the <code> element
-            document.getElementById('code-content').textContent = data;
-        })
-        .catch(error => {
-            console.error('Error fetching the file:', error);
-        });
-
-    function copyCode(elementId) {
-        const codeElement = document.getElementById(elementId).querySelector('code');
-        const textArea = document.createElement('textarea');
-        textArea.value = codeElement.textContent;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('Code copied to clipboard!');
-    }
-</script>
+        <div class="code-container" id="code1">
+          <pre><code class="language-javascript">
+{% raw %}{% include_relative codes/coupon-code-with-timer.html %}{% endraw %}
+          </code></pre>
+        </div>
+      </div>
 
       <!-- Card 2 -->
       <div class="card">
@@ -106,8 +192,6 @@ print(fibonacci(10))
       if (input === validPassword) {
         document.querySelector('.password-gate').style.display = 'none';
         document.querySelector('.content').style.display = 'block';
-        // Load the code content after unlocking
-        loadCodeContent();
       } else {
         errorMsg.style.display = 'block';
         setTimeout(() => {
@@ -117,20 +201,7 @@ print(fibonacci(10))
     }
 
     // ********************
-    // 2. Load the code content from the file
-    // ********************
-    function loadCodeContent() {
-      fetch('codes/Coupon-code-with-timer.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('code1-content').textContent = data;
-          Prism.highlightAll(); // Re-run Prism.js to apply syntax highlighting
-        })
-        .catch(error => console.error('Error loading the code:', error));
-    }
-
-    // ********************
-    // 3. Affichage/Masquage du code
+    // 2. Affichage/Masquage du code
     // ********************
     document.querySelectorAll('.card-image').forEach(img => {
       img.addEventListener('click', () => {
@@ -141,17 +212,17 @@ print(fibonacci(10))
     });
 
     // ********************
-    // 4. Copier le code dans le presse-papiers
+    // 3. Copier le code dans le presse-papiers
     // ********************
     function copyCode(codeId) {
-      const code = document.querySelector(`#${codeId} code`).innerText;
+      const code = document.querySelector(#${codeId} code).innerText;
       navigator.clipboard.writeText(code).then(() => {
         alert('Code copied to clipboard!');
       });
     }
 
     // ********************
-    // 5. Navigation au clavier (fermer le code avec la touche Échap)
+    // 4. Navigation au clavier (fermer le code avec la touche Échap)
     // ********************
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
