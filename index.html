@@ -143,12 +143,12 @@
       <!-- Card 1 -->
       <div class="card">
         <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
-        <!-- Image mise à jour pour le premier code -->
-       <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
+        <!-- Updated image for the first code -->
+        <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
 
         <div class="code-container" id="code1">
           <pre><code class="language-javascript">
-{% raw %}{% include_relative codes/coupon-code-with-timer.html %}{% endraw %}
+{% include_relative codes/coupon-code-with-timer.html %}
           </code></pre>
         </div>
       </div>
@@ -181,7 +181,7 @@ print(fibonacci(10))
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
   <script>
     // ********************
-    // 1. Protection par mot de passe
+    // 1. Password Protection
     // ********************
     const validPassword = "123";
     
@@ -201,7 +201,7 @@ print(fibonacci(10))
     }
 
     // ********************
-    // 2. Affichage/Masquage du code
+    // 2. Toggle Code Visibility
     // ********************
     document.querySelectorAll('.card-image').forEach(img => {
       img.addEventListener('click', () => {
@@ -212,7 +212,7 @@ print(fibonacci(10))
     });
 
     // ********************
-    // 3. Copier le code dans le presse-papiers
+    // 3. Copy Code to Clipboard
     // ********************
     function copyCode(codeId) {
       const code = document.querySelector(`#${codeId} code`).innerText;
@@ -222,7 +222,7 @@ print(fibonacci(10))
     }
 
     // ********************
-    // 4. Navigation au clavier (fermer le code avec la touche Échap)
+    // 4. Close Code with Escape Key
     // ********************
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
