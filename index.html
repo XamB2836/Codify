@@ -140,23 +140,25 @@
     </header>
 
     <div class="grid">
- <!-- Card 1 -->
+<!-- Card 1 -->
 <div class="card">
   <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
   <!-- Updated image for the first code -->
-  <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
+  <img src="photos/photo1.png" alt="Photo 1" class="card-image" data-code="code1">
 
   {% comment %}
-    Capture the content of the file. Adjust the path if necessary.
+    Capture the contents of the file so that Jekyll processes the include.
+    Make sure the file path (and case) is correct.
   {% endcomment %}
   {% capture coupon_code %}
-    {% include_relative Codes/coupon-code-with-timer.html %}
+    {% include_relative codes/coupon-code-with-timer.html %}
   {% endcapture %}
 
   <div class="code-container" id="code1">
     <pre><code class="language-html">{{ coupon_code | escape }}</code></pre>
   </div>
 </div>
+
 
 
 
