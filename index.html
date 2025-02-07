@@ -156,6 +156,22 @@
     </header>
 
     <div class="grid">
+
+
+
+
+
+
+
+
+
+
+
+
+      
+
+
+      
   
 <!-- Card 1 -->
 <div class="card">
@@ -165,13 +181,293 @@
   <div class="code-container" id="code1">
     <!-- Embed your gist directly in this container -->
 <pre><code class="html">
+  <div class="promo-timer">
+  <div class="promo-timer__content">
+    <div class="promo-timer__left">
+      <span class="promo-timer__label">LIMITED TIME OFFER:</span>
+      <span class="promo-timer__discount">20% OFF</span>
+      <button class="promo-timer__code-btn" data-code="RELAX20">
+        RELAX20
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="promo-timer__right">
+      <div class="promo-timer__time-blocks">
+        <div class="promo-timer__time-block">
+          <span class="promo-timer__time" data-unit="hours">00</span>
+          <span class="promo-timer__unit">h</span>
+        </div>
+        <div class="promo-timer__separator">:</div>
+        <div class="promo-timer__time-block">
+          <span class="promo-timer__time" data-unit="minutes">07</span>
+          <span class="promo-timer__unit">m</span>
+        </div>
+        <div class="promo-timer__separator">:</div>
+        <div class="promo-timer__time-block">
+          <span class="promo-timer__time" data-unit="seconds">36</span>
+          <span class="promo-timer__unit">s</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<script src="https://gist.github.com/XamB2836/2c4a95614d682770e14ba581579f80d3.js"></script>
+<style>
+.promo-timer {
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.promo-timer__content {
+  background: linear-gradient(135deg, #5E8F8F 0%, #2A405E 200%);
+  border-radius: 2px;
+  padding: 8px 12px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.promo-timer__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.promo-timer__label {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.promo-timer__discount {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.promo-timer__code-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.promo-timer__code-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.promo-timer__code-btn svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.8;
+}
+
+.promo-timer__right {
+  flex-shrink: 0;
+}
+
+.promo-timer__time-blocks {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.promo-timer__time-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 2px 4px;
+  min-width: 32px;
+}
+
+.promo-timer__separator {
+  color: white;
+  font-weight: bold;
+  margin: 0 -1px;
+}
+
+.promo-timer__time {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.promo-timer__unit {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: lowercase;
+}
+
+.promo-timer__copied {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.promo-timer__copied.show {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .promo-timer__content {
+    padding: 6px 8px;
+  }
+  
+  .promo-timer__label {
+    display: none;
+  }
+
+  .promo-timer__discount {
+    font-size: 14px;
+  }
+
+  .promo-timer__code-btn {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .promo-timer__time-block {
+    min-width: 28px;
+  }
+
+  .promo-timer__time {
+    font-size: 13px;
+  }
+
+  .promo-timer__unit {
+    font-size: 8px;
+  }
+}
+</style>
+
+<script>
+  class PromoTimer {
+    constructor(container) {
+      this.container = container;
+      this.timeElements = container.querySelectorAll('.promo-timer__time');
+      this.copyButton = container.querySelector('.promo-timer__code-btn');
+      this.endTime = new Date(new Date().getTime() + (8 * 60 * 1000)); // 8 minutes from now
+      
+      this.setupCopyButton();
+      this.startTimer();
+    }
+
+    setupCopyButton() {
+      if (!this.copyButton) return;
+
+      this.copyButton.addEventListener('click', () => {
+        const code = this.copyButton.dataset.code;
+        navigator.clipboard.writeText(code).then(() => {
+          this.showCopiedMessage();
+        });
+      });
+    }
+
+    showCopiedMessage() {
+      const message = document.createElement('div');
+      message.className = 'promo-timer__copied';
+      message.textContent = 'Copied to clipboard!';
+      document.body.appendChild(message);
+
+      // Force reflow
+      message.offsetHeight;
+      message.classList.add('show');
+
+      setTimeout(() => {
+        message.classList.remove('show');
+        setTimeout(() => message.remove(), 200);
+      }, 2000);
+    }
+
+    startTimer() {
+      this.updateTimer();
+      setInterval(() => this.updateTimer(), 1000);
+    }
+
+    updateTimer() {
+      const now = new Date().getTime();
+      const distance = this.endTime - now;
+
+      if (distance < 0) {
+        this.timeElements.forEach(el => el.textContent = '00');
+        return;
+      }
+
+      const hours = Math.floor(distance / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      this.timeElements.forEach(el => {
+        const unit = el.dataset.unit;
+        const value = unit === 'hours' ? hours : unit === 'minutes' ? minutes : seconds;
+        el.textContent = String(value).padStart(2, '0');
+      });
+    }
+  }
+
+  // Initialize all promo timers on the page
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.promo-timer').forEach(container => {
+      new PromoTimer(container);
+    });
+  });
+</script>
+
           </code></pre>
   </div>
 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
 
       <!-- Card 2 -->
       <div class="card">
