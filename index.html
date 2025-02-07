@@ -156,14 +156,36 @@
     </header>
 
     <div class="grid">
-      <!-- Card 1 -->
-      <div class="card">
-        <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
-        <img src="photos/photo1.png" alt="Photo 1" class="card-image" data-code="code1">
-        <div class="code-container" id="code1">
-          <pre><code class="language-html" id="coupon-code"></code></pre>
-        </div>
-      </div>
+    <!-- Card 1 -->
+<div class="card">
+  <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
+  <img src="photos/photo1.png" alt="Photo 1" class="card-image" data-code="code1">
+
+  <div class="code-container" id="code1">
+    <pre><code class="language-html" id="coupon-code"></code></pre>
+  </div>
+</div>
+
+<script>
+  // Adjust the file path to match your repository structure and correct letter-case
+  fetch('Codes/coupon-code-with-timer.html')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.text();
+    })
+    .then(text => {
+      // Escape HTML so it displays as code rather than rendered content.
+      const escapedText = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      document.getElementById('coupon-code').innerHTML = escapedText;
+    })
+    .catch(error => {
+      console.error('Error fetching the file:', error);
+      document.getElementById('coupon-code').textContent = 'Error loading code.';
+    });
+</script>
+
 
       <!-- Card 2 -->
       <div class="card">
