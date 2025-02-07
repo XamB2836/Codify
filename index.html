@@ -144,20 +144,33 @@
 <div class="card">
   <button class="copy-btn" onclick="copyCode('code1')">Copy</button>
   <!-- Updated image for the first code -->
-  <img src="photos/photo1.png" alt="Photo 1" class="card-image" data-code="code1">
-
-  {% comment %}
-    Capture the contents of the file so that Jekyll processes the include.
-    Make sure the file path (and case) is correct.
-  {% endcomment %}
-  {% capture coupon_code %}
-    {% include_relative codes/coupon-code-with-timer.html %}
-  {% endcapture %}
+  <img src="photo1.png" alt="Photo 1" class="card-image" data-code="code1">
 
   <div class="code-container" id="code1">
-    <pre><code class="language-html">{{ coupon_code | escape }}</code></pre>
+    <pre><code class="language-html" id="coupon-code"></code></pre>
   </div>
 </div>
+
+<script>
+  // Adjust the path if necessary.
+  fetch('codes/coupon-code-with-timer.html')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok.');
+      }
+      return response.text();
+    })
+    .then(text => {
+      // Replace < and > so they display as text.
+      const escapedText = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      document.getElementById('coupon-code').innerHTML = escapedText;
+    })
+    .catch(error => {
+      console.error('Error fetching the file:', error);
+      document.getElementById('coupon-code').textContent = 'Error loading code.';
+    });
+</script>
+
 
 
 
