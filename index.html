@@ -215,7 +215,7 @@ print(fibonacci(10))
     // 3. Copier le code dans le presse-papiers
     // ********************
     function copyCode(codeId) {
-      const code = document.querySelector(#${codeId} code).innerText;
+      const code = document.querySelector(`#${codeId} code`).innerText;
       navigator.clipboard.writeText(code).then(() => {
         alert('Code copied to clipboard!');
       });
