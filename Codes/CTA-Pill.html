@@ -1,0 +1,51 @@
+<!-- CTA Pills with animation-->
+
+
+<!-- ✅ TEXT SETTINGS -->
+{% assign cta_text = "⚡ Almost Gone!" %}  <!-- User-defined text -->
+
+<!-- ✅ COLOR SETTINGS -->
+{% assign cta_bg_color = "#333333" %}  <!-- Background color -->
+{% assign cta_text_color = "#FFFFFF" %} <!-- Text color -->
+
+<!-- ✅ FONT & SIZE SETTINGS -->
+{% assign cta_font_size = "15px" %}  <!-- Font size -->
+{% assign cta_padding = "12px" %}  <!-- Padding -->
+{% assign cta_border_radius = "30px" %}  <!-- Border-radius (rounded edges) -->
+
+<!-- ✅ ANIMATION SETTINGS -->
+{% assign cta_animation_enabled = true %}  <!-- Enable (true) / Disable (false) animation -->
+{% assign cta_animation_type = "pulse" %}  <!-- Choose: pulse, blink, shake, none -->
+
+<!-- ========================= -->
+<!--      CTA PILL CODE       -->
+<!-- ========================= -->
+
+<div class="cta-pill">{{ cta_text }}</div>
+
+<!-- ========================= -->
+<!--         STYLES           -->
+<!-- ========================= -->
+
+<style>
+.cta-pill {
+  background-color: {{ cta_bg_color }};
+  color: {{ cta_text_color }};
+  font-size: {{ cta_font_size }};
+  padding: {{ cta_padding }} 20px;
+  font-weight: bold;
+  border-radius: {{ cta_border_radius }};
+  display: inline-block;
+  text-align: center;
+  margin: 10px auto;
+
+  {% if cta_animation_enabled == true %}
+    animation: {{ cta_animation_type }} 1.5s infinite;
+  {% endif %}
+}
+
+/* Animations */
+@keyframes blink { 50% { opacity: 0.5; } }
+@keyframes pulse { 50% { transform: scale(1.1); } }
+@keyframes shake { 10%, 90% { transform: translateX(-2px); } 30%, 50%, 70% { transform: translateX(2px); } }
+</style>
