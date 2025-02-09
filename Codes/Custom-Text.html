@@ -1,19 +1,21 @@
-{% comment %}
+<!--
   Product title customization snippet.
   Set the title and its styles with the variables below.
-{% endcomment %}
+-->
 
 {% assign title = "Custom Title" %}
 {% assign font_family = "Poppins" %}
 {% assign font_size = "25px" %}
 {% assign font_weight = "700" %}
 {% assign letter_spacing = "1.0px" %}
+{% assign text_color = "#000000" %} 
 
 <h1 id="product-title-display" style="
   font-family: {{ font_family }};
   font-size: {{ font_size }};
   font-weight: {{ font_weight }};
   letter-spacing: {{ letter_spacing }};
+  color: {{ text_color }};
 ">
   {{ title }}
 </h1>
