@@ -1,10 +1,36 @@
+<!-- Promo Timer Snippet -->
+<!-- Displays a countdown timer with a customizable offer and discount code -->
+
+{% assign offer_text = "LIMITED TIME OFFER:" %}
+{% assign discount_text = "20% OFF" %}
+{% assign discount_code = "RELAX20" %}
+
+<!-- Customizable time settings -->
+{% assign countdown_hours = 0 %}
+{% assign countdown_minutes = 8 %}
+{% assign countdown_seconds = 0 %}
+
+<!-- Customizable appearance settings -->
+{% assign font_family = "Poppins, sans-serif" %}
+{% assign font_size = "14px" %}
+{% assign text_color = "white" %}
+
+<!-- Customizable gradient background -->
+{% assign gradient_start = "#5E8F8F" %}
+{% assign gradient_end = "#2A405E" %}
+
 <div class="promo-timer">
-  <div class="promo-timer__content">
+  <div class="promo-timer__content" style="
+    background: linear-gradient(135deg, {{ gradient_start }} 0%, {{ gradient_end }} 200%);
+    font-family: {{ font_family }};
+    font-size: {{ font_size }};
+    color: {{ text_color }};
+  ">
     <div class="promo-timer__left">
-      <span class="promo-timer__label">LIMITED TIME OFFER:</span>
-      <span class="promo-timer__discount">20% OFF</span>
-      <button class="promo-timer__code-btn" data-code="RELAX20">
-        RELAX20
+      <span class="promo-timer__label">{{ offer_text }}</span>
+      <span class="promo-timer__discount">{{ discount_text }}</span>
+      <button class="promo-timer__code-btn" data-code="{{ discount_code }}">
+        {{ discount_code }}
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
         </svg>
@@ -13,17 +39,17 @@
     <div class="promo-timer__right">
       <div class="promo-timer__time-blocks">
         <div class="promo-timer__time-block">
-          <span class="promo-timer__time" data-unit="hours">00</span>
+          <span class="promo-timer__time" data-unit="hours">{{ countdown_hours }}</span>
           <span class="promo-timer__unit">h</span>
         </div>
         <div class="promo-timer__separator">:</div>
         <div class="promo-timer__time-block">
-          <span class="promo-timer__time" data-unit="minutes">07</span>
+          <span class="promo-timer__time" data-unit="minutes">{{ countdown_minutes }}</span>
           <span class="promo-timer__unit">m</span>
         </div>
         <div class="promo-timer__separator">:</div>
         <div class="promo-timer__time-block">
-          <span class="promo-timer__time" data-unit="seconds">36</span>
+          <span class="promo-timer__time" data-unit="seconds">{{ countdown_seconds }}</span>
           <span class="promo-timer__unit">s</span>
         </div>
       </div>
@@ -35,14 +61,14 @@
 .promo-timer {
   max-width: 100%;
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: {{ font_family }};
+  font-size: {{ font_size }};
+  color: {{ text_color }};
 }
 
 .promo-timer__content {
-  background: linear-gradient(135deg, #5E8F8F 0%, #2A405E 200%);
   border-radius: 2px;
   padding: 8px 12px;
-  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,9 +85,10 @@
 .promo-timer__label {
   font-size: 11px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: {{ text_color }};
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 .promo-timer__discount {
@@ -79,25 +106,12 @@
   border: none;
   border-radius: 4px;
   padding: 4px 8px;
-  color: white;
+  color: {{ text_color }};
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
   white-space: nowrap;
-}
-
-.promo-timer__code-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.promo-timer__code-btn svg {
-  width: 14px;
-  height: 14px;
-  opacity: 0.8;
-}
-
-.promo-timer__right {
   flex-shrink: 0;
 }
 
@@ -118,48 +132,27 @@
 }
 
 .promo-timer__separator {
-  color: white;
   font-weight: bold;
-  margin: 0 -1px;
+  color: {{ text_color }};
 }
 
 .promo-timer__time {
-  font-size: 14px;
   font-weight: 700;
-  color: white;
-  line-height: 1;
+  font-size: 14px;
+  color: {{ text_color }};
 }
 
 .promo-timer__unit {
   font-size: 9px;
-  color: rgba(255, 255, 255, 0.8);
   text-transform: lowercase;
-}
-
-.promo-timer__copied {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 12px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.promo-timer__copied.show {
-  opacity: 1;
+  color: {{ text_color }};
 }
 
 @media (max-width: 480px) {
   .promo-timer__content {
     padding: 6px 8px;
   }
-  
+
   .promo-timer__label {
     display: none;
   }
@@ -188,12 +181,21 @@
 </style>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
   class PromoTimer {
     constructor(container) {
       this.container = container;
       this.timeElements = container.querySelectorAll('.promo-timer__time');
       this.copyButton = container.querySelector('.promo-timer__code-btn');
-      this.endTime = new Date(new Date().getTime() + (8 * 60 * 1000)); // 8 minutes from now
+      
+      const countdownHours = parseInt('{{ countdown_hours }}', 10);
+      const countdownMinutes = parseInt('{{ countdown_minutes }}', 10);
+      const countdownSeconds = parseInt('{{ countdown_seconds }}', 10);
+
+      this.endTime = new Date();
+      this.endTime.setHours(this.endTime.getHours() + countdownHours);
+      this.endTime.setMinutes(this.endTime.getMinutes() + countdownMinutes);
+      this.endTime.setSeconds(this.endTime.getSeconds() + countdownSeconds);
       
       this.setupCopyButton();
       this.startTimer();
@@ -201,29 +203,11 @@
 
     setupCopyButton() {
       if (!this.copyButton) return;
-
       this.copyButton.addEventListener('click', () => {
-        const code = this.copyButton.dataset.code;
-        navigator.clipboard.writeText(code).then(() => {
-          this.showCopiedMessage();
+        navigator.clipboard.writeText(this.copyButton.dataset.code).then(() => {
+          alert('Copied to clipboard!');
         });
       });
-    }
-
-    showCopiedMessage() {
-      const message = document.createElement('div');
-      message.className = 'promo-timer__copied';
-      message.textContent = 'Copied to clipboard!';
-      document.body.appendChild(message);
-
-      // Force reflow
-      message.offsetHeight;
-      message.classList.add('show');
-
-      setTimeout(() => {
-        message.classList.remove('show');
-        setTimeout(() => message.remove(), 200);
-      }, 2000);
     }
 
     startTimer() {
@@ -240,23 +224,13 @@
         return;
       }
 
-      const hours = Math.floor(distance / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
       this.timeElements.forEach(el => {
         const unit = el.dataset.unit;
-        const value = unit === 'hours' ? hours : unit === 'minutes' ? minutes : seconds;
-        el.textContent = String(value).padStart(2, '0');
+        el.textContent = String(unit === 'hours' ? Math.floor(distance / 3600000) : unit === 'minutes' ? Math.floor((distance % 3600000) / 60000) : Math.floor((distance % 60000) / 1000)).padStart(2, '0');
       });
     }
   }
 
-  // Initialize all promo timers on the page
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.promo-timer').forEach(container => {
-      new PromoTimer(container);
-    });
-  });
+  document.querySelectorAll('.promo-timer').forEach(container => new PromoTimer(container));
+});
 </script>
-
