@@ -1,0 +1,40 @@
+<!-- Configuration Section -->
+{% assign total_sales = 1758 %}
+{% assign text_color = '#333333' %}
+{% assign highlight_color = '#2563EB' %}
+{% assign bg_color = '#FFFFFF' %}
+{% assign border_radius = '9px' %}
+{% assign font_family = 'Poppins, sans-serif' %}
+{% assign font_size = '14px' %}
+{% assign font_weight = '500' %}
+{% assign margin_top = '10px' %}
+{% assign margin_bottom = '10px' %}
+
+<!-- Sales Display Block -->
+<div style="
+  display: inline-flex;
+  align-items: center;
+  background-color: {{ bg_color }};
+  border-radius: {{ border_radius }};
+  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.05);
+  padding: 0.5rem 1rem;
+  font-family: {{ font_family }};
+  font-size: {{ font_size }};
+  font-weight: {{ font_weight }};
+  color: {{ text_color }};
+  margin-top: {{ margin_top }};
+  margin-bottom: {{ margin_bottom }};
+">
+  <!-- Sales Icon -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{ highlight_color }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.5rem;">
+    <line x1="18" y1="20" x2="18" y2="10"></line>
+    <line x1="12" y1="20" x2="12" y2="4"></line>
+    <line x1="6" y1="20" x2="6" y2="14"></line>
+  </svg>
+
+  <!-- Sales Text -->
+  <span style="margin-right: 0.25rem;">Last 24h Sales:</span>
+
+  <!-- Sales Number -->
+  <span style="font-weight: 700; color: {{ highlight_color }};">{{ total_sales }}</span>
+</div>

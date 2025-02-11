@@ -186,13 +186,13 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="grid"> 
       <!-- Card 3 -->
       <div>
-        <h3 style="text-align: center; padding: 1rem;">CTA Pills With Animations</h3>
+        <h3 style="text-align: center; padding: 1rem;">CTA Pill With Animations</h3>
         <div class="card">
           <button class="copy-btn" onclick="copyCode('code3')">Copy</button>
-          <img src="Photos/CTA-Pill.png" alt="Feature 2" class="card-image" data-code="code3">
+          <img src="Photos/CTA-Pill.png" alt="Feature 3" class="card-image" data-code="code3">
           <div class="code-container" id="code3">
             <pre><code class="language-html" id="code3-content">
               <!-- Code will be loaded here -->
@@ -200,8 +200,22 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+      <!-- Card 4 -->
+      <div>
+        <h3 style="text-align: center; padding: 1rem;">Custom Title Text</h3>
+        <div class="card">
+          <button class="copy-btn" onclick="copyCode('code4')">Copy</button>
+          <img src="Photos/Last-24H-Sales.png" alt="Feature 4" class="card-image" data-code="code4">
+          <div class="code-container" id="code4">
+            <pre><code class="language-html" id="code4-content">
+              <!-- Code will be loaded here -->
+            </code></pre>
+          </div>
+        </div>
+      </div>
+ 
+
+
 
 <script>
   // Function to fetch and display code
@@ -228,7 +242,9 @@
   document.addEventListener('DOMContentLoaded', () => {
     loadCode('code1', 'Codes/Coupon-Code-With-Timer.html'); // Update with the actual path to your file
     loadCode('code2', 'Codes/Custom-Text.html');   // Update with the actual path to your file
-    loadCode( 'code3', 'Codes/CTA-Pill.html')
+    loadCode('code3', 'Codes/CTA-Pill.html');
+    loadCode('code4','Codes/Last-24H-Sales.html');
+    loadcode()
   });
 </script>
 
